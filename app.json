@@ -3,7 +3,6 @@
     "scheme": "acme",
     "plugins": [
       "expo-router",
-      "expo-sqlite",
       [
         "expo-camera",
         {
@@ -21,17 +20,18 @@
     ],
     "name": "experience-sampling-app",
     "slug": "experience-sampling-app",
+    "version": "1.0.0",
     "android": {
       "package": "com.wooyuu.experiencesampling",
-      "permissions": [
-        "CAMERA",
-        "RECORD_AUDIO",
-        "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
-      ]
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "f94e1b06-70a3-4470-9fd7-baf45877559e"
+      }
     },
     "owner": "wooyuu",
     "ios": {
