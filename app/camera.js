@@ -1,25 +1,42 @@
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
-import { CameraView, useCameraPermissions } from "expo-camera";
+import { CameraView, useCameraPermissions, useMicrophonePermissions } from "expo-camera";
 import { useRef, useState, useEffect } from "react";
 import { useRouter } from "expo-router";
 import * as FileSystem from "expo-file-system/legacy";
 import { saveVlog } from "../lib/database";
+import Constants from "expo-constants";
 
 export default function CameraScreen() {
   const router = useRouter();
   const cameraRef = useRef(null);
   const [permission, requestPermission] = useCameraPermissions();
+  const [micPermission, requestMicPermission] = useMicrophonePermissions();
   const [isRecording, setIsRecording] = useState(false);
   const [countdown, setCountdown] = useState(null);
 
+  const isExpoGo = Constants.appOwnership === "expo";
+
   useEffect(() => {
-    if (!permission?.granted) {
-      requestPermission();
-    }
-  }, [permission]);
+    const requestPermissions = async () => {
+      if (!permission?.granted) {
+        await requestPermission();
+      }
+      if (!micPermission?.granted) {
+        await requestMicPermission();
+      }
+    };
+    requestPermissions();
+  }, [permission, micPermission]);
 
   const startRecording = async () => {
     if (!cameraRef.current || isRecording) return;
+
+    // Check microphone permission
+    if (!micPermission?.granted) {
+      Alert.alert("Permission Required", "Microphone permission is needed for video recording.");
+      await requestMicPermission();
+      return;
+    }
 
     setIsRecording(true);
     setCountdown(1);
@@ -57,7 +74,16 @@ export default function CameraScreen() {
         ]);
       }
     } catch (error) {
-      Alert.alert("Error", error.message);
+      console.log("Recording error:", error);
+      if (isExpoGo) {
+        Alert.alert(
+          "Expo Go Limitation",
+          "Video recording may not work properly in Expo Go. Please test with the built APK instead.",
+          [{ text: "OK", onPress: () => router.back() }]
+        );
+      } else {
+        Alert.alert("Error", `Recording failed: ${error.message}`);
+      }
     }
 
     setIsRecording(false);
