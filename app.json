@@ -1,25 +1,38 @@
 {
   "expo": {
-    "scheme": "acme",
-    "plugins": [
-      "expo-router"
-    ],
-    "name": "expo-router-mwe",
+    "name": "Experience Sampling App",
     "slug": "expo-router-mwe",
-    "android": {
-      "package": "com.spiketren.exporoutermwe"
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "7918e76f-59e9-45c4-aae4-c99cec64cfac"
-      }
-    },
-    "owner": "spiketren",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera for recording vlogs.",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for recording vlogs.",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location for experience sampling."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+          "savePhotosPermission": "Allow $(PRODUCT_NAME) to save vlogs.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
+    ],
     "ios": {
-      "bundleIdentifier": "com.spiketren.exporoutermwe",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera for recording vlogs.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone for recording vlogs.",
+        "NSLocationWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to use your location for experience sampling.",
+        "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos."
       }
     }
   }

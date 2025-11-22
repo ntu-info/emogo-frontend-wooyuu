@@ -1,19 +1,35 @@
-import { Stack } from "expo-router";
+import { useEffect } from 'react';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { initDatabase } from './utils/database';
+import { requestNotificationPermission, scheduleDailyNotifications } from './utils/notifications';
 
 export default function RootLayout() {
+  useEffect(() => {
+    async function setup() {
+      // 初始化資料庫
+      await initDatabase();
+      
+      // 請求通知權限並排程
+      const granted = await requestNotificationPermission();
+      if (granted) {
+        await scheduleDailyNotifications();
+      }
+    }
+    setup();
+  }, []);
+
   return (
     <>
-      {/* Root stack controls screen transitions for the whole app */}
+      <StatusBar style="auto" />
       <Stack>
-        {/* The (tabs) group is one Stack screen with its own tab navigator */}
         <Stack.Screen
           name="(tabs)"
           options={{ headerShown: false }}
         />
-        {/* This screen is pushed on top of tabs when you navigate to /details */}
         <Stack.Screen
-          name="details"
-          options={{ title: "Details" }}
+          name="vlog"
+          options={{ title: '錄製 Vlog', presentation: 'modal' }}
         />
       </Stack>
     </>
