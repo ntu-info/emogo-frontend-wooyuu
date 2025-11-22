@@ -2,24 +2,25 @@
   "expo": {
     "scheme": "acme",
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-sqlite"
     ],
-    "name": "expo-router-mwe",
-    "slug": "expo-router-mwe",
+    "name": "experience-sampling-app",
+    "slug": "experience-sampling-app",
     "android": {
-      "package": "com.spiketren.exporoutermwe"
+      "package": "com.wooyuu.experiencesampling"
     },
     "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "7918e76f-59e9-45c4-aae4-c99cec64cfac"
-      }
+      "router": {}
     },
-    "owner": "spiketren",
+    "owner": "wooyuu",
     "ios": {
-      "bundleIdentifier": "com.spiketren.exporoutermwe",
+      "bundleIdentifier": "com.wooyuu.experiencesampling",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "We need camera access to record 1-second vlogs",
+        "NSMicrophoneUsageDescription": "We need microphone access to record vlogs with audio",
+        "NSLocationWhenInUseUsageDescription": "We need your location for experience sampling"
       }
     }
   }
