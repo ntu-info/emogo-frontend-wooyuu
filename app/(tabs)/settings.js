@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 import * as Notifications from "expo-notifications";
 import * as FileSystem from "expo-file-system/legacy";
 import * as Sharing from "expo-sharing";
@@ -15,6 +16,7 @@ Notifications.setNotificationHandler({
 });
 
 export default function SettingsScreen() {
+  const router = useRouter();
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
   const [stats, setStats] = useState({ sentiments: 0, locations: 0, vlogs: 0 });
 
@@ -152,21 +154,8 @@ export default function SettingsScreen() {
     }
   };
 
-  const viewDataFolder = async () => {
-    try {
-      const dataDir = FileSystem.documentDirectory + "data/";
-      const dirInfo = await FileSystem.getInfoAsync(dataDir);
-
-      if (!dirInfo.exists) {
-        Alert.alert("No Data", "No data has been exported yet");
-        return;
-      }
-
-      const files = await FileSystem.readDirectoryAsync(dataDir);
-      Alert.alert("Data Folder Contents", files.join("\n") || "Empty");
-    } catch (error) {
-      Alert.alert("Error", error.message);
-    }
+  const viewDataFolder = () => {
+    router.push("/dataview");
   };
 
   return (
@@ -209,7 +198,7 @@ export default function SettingsScreen() {
           <Text style={styles.buttonText}>Export All Data</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonSecondary} onPress={viewDataFolder}>
-          <Text style={styles.buttonTextSecondary}>View Data Folder</Text>
+          <Text style={styles.buttonTextSecondary}>View All Records</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

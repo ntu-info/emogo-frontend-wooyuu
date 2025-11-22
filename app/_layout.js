@@ -15,6 +15,10 @@ export default function RootLayout() {
         name="camera"
         options={{ title: "Record Vlog" }}
       />
+      <Stack.Screen
+        name="dataview"
+        options={{ title: "View Data" }}
+      />
     </Stack>
   );
 }
