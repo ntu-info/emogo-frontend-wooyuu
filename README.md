@@ -1,6 +1,10 @@
 # Experience Sampling App
 
-一個用於經驗取樣的 React Native 應用程式，使用 Expo SDK 54 開發。
+一個用於取樣的 React Native 應用程式，使用 Expo SDK 54 開發。
+- **My app URI**
+   ```bash
+   https://expo.dev/accounts/wooyuu/projects/experience-sampling-app/builds/f332a1a7-50ce-4d77-8dab-5fd0c85d6a20
+   ```
 
 ## 功能特色
 
@@ -32,8 +36,6 @@
 1. 複製專案並安裝依賴：
 
    ```bash
-   git clone <repository-url>
-   cd emogo-frontend-wooyuu
    npm install
    ```
 
@@ -98,9 +100,3 @@ npx expo start --tunnel
 - SQLite 資料庫：情緒問卷、位置、影片路徑
 - 影片檔案：`/data/vlog_[timestamp].mp4`
 - 匯出檔案：`/data/sentiments.json`、`locations.json`、`vlogs.json`
-
-## 作業要求
-
-- 收集 3 種資料類型（情緒問卷、GPS、Vlog）
-- 每種資料至少 3 筆紀錄
-- 最後一筆與第一筆時間差 > 12 小時
