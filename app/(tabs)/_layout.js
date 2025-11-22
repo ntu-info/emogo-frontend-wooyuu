@@ -1,30 +1,19 @@
-import { Tabs } from 'expo-router';
+import { Tabs } from "expo-router";
 
 export default function TabsLayout() {
   return (
     <Tabs>
+      {/* First tab uses the index.js screen in this folder */}
       <Tabs.Screen
         name="index"
         options={{
-          title: '首頁',
-        }}
-      />
-      <Tabs.Screen
-        name="survey"
-        options={{
-          title: '問卷',
-        }}
-      />
-      <Tabs.Screen
-        name="data"
-        options={{
-          title: '資料',
+          title: "Home",
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: '設定',
+          title: "Settings",
         }}
       />
     </Tabs>
