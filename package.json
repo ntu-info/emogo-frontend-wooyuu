@@ -17,7 +17,7 @@
     "expo-location": "~18.0.10",
     "expo-notifications": "~0.31.2",
     "expo-router": "~6.0.0",
-    "expo-sharing": "~13.0.5",
+    "expo-sharing": "~14.0.7",
     "expo-sqlite": "~16.0.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
