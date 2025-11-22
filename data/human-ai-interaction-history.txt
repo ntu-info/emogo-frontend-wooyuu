@@ -1,0 +1,216 @@
+================================================================================
+Human-AI Interaction History
+Experience Sampling App Development
+================================================================================
+
+Date: 2025-11-22
+Project: Experience Sampling App (Expo React Native)
+AI Assistant: Claude (Anthropic)
+
+================================================================================
+PROJECT REQUIREMENTS
+================================================================================
+
+Human requested to create an experience-sampling app with the following features:
+- Collect data 3 times a day via notifications
+- Simple sentiment questionnaire (structured active/foreground data)
+- 1-second vlog recorder (unstructured active/foreground data)
+- GPS coordinates collection (structured passive/background data)
+- Data export functionality
+- Required: 3+ records for each data type with time span > 12 hours
+
+Required modules:
+- expo-notifications
+- expo-sqlite
+- expo-camera
+- expo-file-system
+- expo-sharing
+- expo-location
+
+================================================================================
+INTERACTION LOG
+================================================================================
+
+--------------------------------------------------------------------------------
+[1] Human: Initial Request
+--------------------------------------------------------------------------------
+User requested creation of an experience sampling app for a homework assignment,
+specifying the data collection requirements and required Expo modules.
+
+AI Response:
+- Analyzed requirements and planned the implementation
+- Installed required Expo modules using npx expo install
+- Created project structure
+
+--------------------------------------------------------------------------------
+[2] Human: Module Installation
+--------------------------------------------------------------------------------
+User asked about installing the required modules.
+
+AI Response:
+- Executed: npx expo install expo-notifications expo-sqlite expo-camera
+  expo-file-system expo-sharing expo-location
+- Fixed expo-sharing version from ~13.0.5 to ~14.0.7 for compatibility
+- Updated app.json owner configuration
+
+--------------------------------------------------------------------------------
+[3] Human: EAS Build Configuration
+--------------------------------------------------------------------------------
+User shared documentation about EAS deployment and asked for help with build setup.
+
+AI Response:
+- Ran eas init to configure project
+- Created eas.json with build profiles
+- Configured app.json with proper bundle identifiers
+
+--------------------------------------------------------------------------------
+[4] Human: App Development
+--------------------------------------------------------------------------------
+AI implemented core functionality:
+
+Files Created/Modified:
+1. lib/database.js
+   - SQLite database initialization
+   - Tables: sentiments, locations, vlogs
+   - CRUD functions for each data type
+
+2. app/(tabs)/index.js
+   - Sentiment questionnaire with sliders (mood, energy, stress 1-5)
+   - GPS location capture on submit
+   - Navigation to camera for vlog recording
+
+3. app/camera.js
+   - 1-second video recording using CameraView
+   - Front camera with countdown display
+   - Save video to documentDirectory/data/
+
+4. app/(tabs)/settings.js
+   - Schedule daily notifications (9:00, 14:00, 20:00)
+   - Export all data to JSON files
+   - Link to data view page
+
+5. app/dataview.js
+   - View all recorded data with tab switching
+   - Display sentiments, locations, and vlogs
+
+--------------------------------------------------------------------------------
+[5] Human: Expo Go Testing Issues
+--------------------------------------------------------------------------------
+User reported errors when testing in Expo Go.
+
+Issues & Fixes:
+1. TypeError with react-native-screens
+   - Fixed by adjusting version to ~4.4.0 for Expo Go compatibility
+
+2. expo-file-system deprecation error
+   - Changed import to "expo-file-system/legacy"
+
+3. Video recording error in Expo Go
+   - Added detection for Expo Go environment
+   - Display helpful message about APK testing requirement
+
+--------------------------------------------------------------------------------
+[6] Human: EAS Build Failures
+--------------------------------------------------------------------------------
+User reported multiple EAS build failures.
+
+Issues:
+1. react-native-screens version incompatibility with React Native 0.81.5
+2. ChoreographerCompat unresolved reference error
+3. C++ compilation errors with New Architecture
+
+Fixes Applied:
+1. Updated react-native-screens to ^4.18.0
+2. Added newArchEnabled: false to app.json for Android
+3. Regenerated package-lock.json multiple times
+
+--------------------------------------------------------------------------------
+[7] Human: Successful Build
+--------------------------------------------------------------------------------
+User confirmed build 7551ad2f-867b-47f1-8d9d-4d02ae3affba succeeded.
+
+AI Response:
+- Documented working configuration
+- Advised testing video recording on APK instead of Expo Go
+
+--------------------------------------------------------------------------------
+[8] Human: Video Recording Error
+--------------------------------------------------------------------------------
+User reported "an error occurred while recording a video" in Expo Go.
+
+AI Response:
+- Added microphone permission request (useMicrophonePermissions)
+- Added Expo Go detection with helpful error message
+- Explained that video recording requires native modules (APK only)
+
+--------------------------------------------------------------------------------
+[9] Human: README Update Request
+--------------------------------------------------------------------------------
+User asked to update README with execution instructions.
+
+AI Response:
+- Rewrote README.md with comprehensive documentation:
+  - App features and modules
+  - Environment requirements
+  - Installation steps
+  - Development mode instructions
+  - APK build instructions
+  - Usage guide
+  - Data storage information
+  - Homework requirements
+
+--------------------------------------------------------------------------------
+[10] Human: Interaction History Export
+--------------------------------------------------------------------------------
+User requested export of Human-AI interaction history for homework submission.
+
+AI Response:
+- Created this interaction history document
+
+================================================================================
+FINAL PROJECT STRUCTURE
+================================================================================
+
+emogo-frontend-wooyuu/
+├── app/
+│   ├── (tabs)/
+│   │   ├── index.js          # Sentiment questionnaire + GPS
+│   │   ├── settings.js       # Notifications, export, data view link
+│   │   └── _layout.js        # Tab navigation
+│   ├── camera.js             # 1-second vlog recorder
+│   ├── dataview.js           # View all records
+│   ├── index.js              # Redirect to tabs
+│   └── _layout.js            # Root stack navigation
+├── lib/
+│   └── database.js           # SQLite database operations
+├── data/                     # Exported data folder
+│   └── human-ai-interaction-history.txt
+├── app.json                  # Expo configuration
+├── eas.json                  # EAS Build configuration
+├── package.json              # Dependencies
+└── README.md                 # Usage instructions
+
+================================================================================
+KEY TECHNICAL DECISIONS
+================================================================================
+
+1. Used expo-sqlite for local data storage (sentiments, locations, vlog paths)
+2. Used CameraView with mode="video" for recording
+3. Used expo-file-system/legacy API for file operations
+4. Disabled New Architecture (newArchEnabled: false) for build compatibility
+5. Used react-native-screens ^4.18.0 for React Native 0.81.5 compatibility
+6. Implemented 3 daily notifications at 9:00, 14:00, 20:00
+
+================================================================================
+LESSONS LEARNED
+================================================================================
+
+1. Expo Go has limitations - video recording requires native build (APK)
+2. Version compatibility is critical - react-native-screens must match RN version
+3. New Architecture can cause build issues - disable if encountering C++ errors
+4. Always regenerate package-lock.json after version changes
+5. Microphone permission is required for video recording
+
+================================================================================
+END OF INTERACTION HISTORY
+================================================================================
