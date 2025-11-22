@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import * as Notifications from "expo-notifications";
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system/legacy";
 import * as Sharing from "expo-sharing";
 import { getAllSentiments, getAllLocations, getAllVlogs } from "../../lib/database";
 
