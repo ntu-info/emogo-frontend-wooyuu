@@ -25,7 +25,8 @@
       "package": "com.wooyuu.experiencesampling",
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "newArchEnabled": false
     },
     "extra": {
       "router": {},
