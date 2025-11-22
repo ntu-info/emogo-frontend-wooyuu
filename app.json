@@ -3,12 +3,32 @@
     "scheme": "acme",
     "plugins": [
       "expo-router",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera for recording vlogs",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone for recording vlogs",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to access your location for experience sampling"
+        }
+      ]
     ],
     "name": "experience-sampling-app",
     "slug": "experience-sampling-app",
     "android": {
-      "package": "com.wooyuu.experiencesampling"
+      "package": "com.wooyuu.experiencesampling",
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "extra": {
       "router": {}

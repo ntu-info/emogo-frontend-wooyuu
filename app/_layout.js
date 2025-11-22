@@ -15,6 +15,11 @@ export default function RootLayout() {
           name="details"
           options={{ title: "Details" }}
         />
+        {/* Camera screen for recording vlogs */}
+        <Stack.Screen
+          name="camera"
+          options={{ title: "Record Vlog", presentation: "modal" }}
+        />
       </Stack>
     </>
   );
