@@ -17,6 +17,8 @@ export default function HomeScreen() {
 
   const handleSubmit = async () => {
     setLoading(true);
+    let locationSaved = false;
+
     try {
       // Save sentiment
       await saveSentiment(mood, energy, stress);
@@ -27,23 +29,25 @@ export default function HomeScreen() {
         try {
           // Try to get current position with timeout
           const location = await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.Balanced,
-            timeInterval: 5000,
-            mayShowUserSettingsDialog: true,
+            accuracy: Location.Accuracy.Low,
           });
           await saveLocation(location.coords.latitude, location.coords.longitude);
+          locationSaved = true;
         } catch (locError) {
           // Fallback: try last known location
           const lastLocation = await Location.getLastKnownPositionAsync({});
           if (lastLocation) {
             await saveLocation(lastLocation.coords.latitude, lastLocation.coords.longitude);
-          } else {
-            console.log("Location unavailable, skipping GPS save");
+            locationSaved = true;
           }
         }
       }
 
-      Alert.alert("Success", "Data saved! Now record a 1-second vlog.", [
+      const message = locationSaved
+        ? "Sentiment + GPS saved! Now record a vlog."
+        : "Sentiment saved! (GPS unavailable) Now record a vlog.";
+
+      Alert.alert("Success", message, [
         { text: "Record Vlog", onPress: () => router.push("/camera") },
       ]);
     } catch (error) {
