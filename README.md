@@ -3,7 +3,7 @@
 一個用於取樣的 React Native 應用程式，使用 Expo SDK 54 開發。
 - **My app URI**
    ```bash
-   https://expo.dev/accounts/wooyuu/projects/experience-sampling-app/builds/f332a1a7-50ce-4d77-8dab-5fd0c85d6a20
+   https://expo.dev/accounts/wooyuu/projects/experience-sampling-app/builds/1ee59d1a-524c-402e-a2e9-488de97f7ba0
    ```
 
 ## 功能特色
