@@ -24,8 +24,23 @@ export default function HomeScreen() {
       // Get and save GPS location
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status === "granted") {
-        const location = await Location.getCurrentPositionAsync({});
-        await saveLocation(location.coords.latitude, location.coords.longitude);
+        try {
+          // Try to get current position with timeout
+          const location = await Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.Balanced,
+            timeInterval: 5000,
+            mayShowUserSettingsDialog: true,
+          });
+          await saveLocation(location.coords.latitude, location.coords.longitude);
+        } catch (locError) {
+          // Fallback: try last known location
+          const lastLocation = await Location.getLastKnownPositionAsync({});
+          if (lastLocation) {
+            await saveLocation(lastLocation.coords.latitude, lastLocation.coords.longitude);
+          } else {
+            console.log("Location unavailable, skipping GPS save");
+          }
+        }
       }
 
       Alert.alert("Success", "Data saved! Now record a 1-second vlog.", [
