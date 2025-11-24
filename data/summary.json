@@ -1,0 +1,12 @@
+{
+  "exportDate": "2025-11-24T15:00:00.000Z",
+  "counts": {
+    "sentiments": 10,
+    "locations": 7,
+    "vlogs": 10
+  },
+  "timeRange": {
+    "first": "2025-11-23T03:08:40.000Z",
+    "last": "2025-11-24T06:30:48.000Z"
+  }
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "mood": 3,
+    "energy": 4,
+    "stress": 3,
+    "timestamp": "2025-11-23T03:08:40.000Z"
+  },
+  {
+    "id": 2,
+    "mood": 3,
+    "energy": 4,
+    "stress": 3,
+    "timestamp": "2025-11-23T03:10:34.000Z"
+  },
+  {
+    "id": 3,
+    "mood": 3,
+    "energy": 5,
+    "stress": 3,
+    "timestamp": "2025-11-23T03:18:47.000Z"
+  },
+  {
+    "id": 4,
+    "mood": 1,
+    "energy": 1,
+    "stress": 1,
+    "timestamp": "2025-11-23T03:20:24.000Z"
+  },
+  {
+    "id": 5,
+    "mood": 4,
+    "energy": 3,
+    "stress": 2,
+    "timestamp": "2025-11-23T06:21:36.000Z"
+  },
+  {
+    "id": 6,
+    "mood": 3,
+    "energy": 4,
+    "stress": 3,
+    "timestamp": "2025-11-23T08:17:05.000Z"
+  },
+  {
+    "id": 7,
+    "mood": 4,
+    "energy": 3,
+    "stress": 2,
+    "timestamp": "2025-11-23T09:11:50.000Z"
+  },
+  {
+    "id": 8,
+    "mood": 5,
+    "energy": 2,
+    "stress": 1,
+    "timestamp": "2025-11-23T13:24:38.000Z"
+  },
+  {
+    "id": 9,
+    "mood": 3,
+    "energy": 2,
+    "stress": 4,
+    "timestamp": "2025-11-23T14:01:50.000Z"
+  },
+  {
+    "id": 10,
+    "mood": 4,
+    "energy": 3,
+    "stress": 2,
+    "timestamp": "2025-11-24T06:30:37.000Z"
+  }
+]
